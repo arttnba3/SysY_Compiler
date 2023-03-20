@@ -4,15 +4,17 @@
 
 #include "a3compiler/scanner.h"
 #include "a3compiler/token.h"
+#include "a3compiler/compile_err.h"
 #include "tools/tools.h"
 
 using namespace a3compiler;
 
 using std::ifstream, std::string, std::ios, std::cout, std::endl, std::stoull;
 
-A3Scanner::A3Scanner(ifstream *input)
+A3Scanner::A3Scanner(string filename, ifstream *input)
 {
     this->input = input;
+    this->filename = filename;
     this->token_nr = 0;
     this->line_nr = 1;
 }
@@ -103,12 +105,18 @@ reget_token:
                     token->lexeme += ch;
                     ch = this->next_char();
                 }
-            } else if (is_digit(ch)) { /* octal */
+            } else if (is_oct_digit(ch)) { /* octal */
                 num_base = 8;
                 token->lexeme += ch;
 
                 ch = this->next_char();
-                while (is_oct_digit(ch)) {
+                while (is_digit(ch)) {
+                    if (!is_oct_digit(ch)) {
+                        throw A3CompilerError(string("invalid digit \"") + ch
+                                              + "\" in octal constant",
+                                              this->filename,
+                                              this->line_nr);
+                    }
                     token->lexeme += ch;
                     ch = this->next_char();
                 }
@@ -117,7 +125,13 @@ reget_token:
                 token->lexeme += ch;
 
                 ch = this->next_char();
-                while (is_bin_digit(ch)) {
+                while (is_digit(ch)) {
+                    if (!(is_bin_digit(ch))) {
+                        throw A3CompilerError(string("invalid digit \"") + ch
+                                              + "\" in binary constant",
+                                              this->filename,
+                                              this->line_nr);
+                    }
                     token->lexeme += ch;
                     ch = this->next_char();
                 }

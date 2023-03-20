@@ -12,6 +12,7 @@ namespace a3compiler {
         IDENTIFIER = 0, NUMBER,
         /* SysY key words */
         IF, ELSE, DO, WHILE, BREAK, CONTINUE, RETURN, 
+        CONST, INT, VOID,
         /* seperator ; () [] {} */
         SEMICOLON, LPAR, RPAR, LBRACKET, RBRACKET, LBRACE, RBRACE,
         /* operator = + - * / ++ -- */
@@ -32,7 +33,8 @@ namespace a3compiler {
         /* in fact we don't use these two str, but print the original value */
         "Ident()", "Number()",
         /* print by default */
-        "If", "Else", "Do", "While", "Break", "Continue", "Return",
+        "If", "Else", "Do", "While", "Break", "Continue", "Return", 
+        "Const","Int","Void",
         "Semicolon", "LPar", "RPar", "LBracket", "RBracket", "LBrace", "RBrace",
         "Assign", "Plus", "Minus", "Mult", "Div", "Inc", "Dec",
         "And", "Or", "Not", "Lt", "Gt", "LtEq", "GtEq", "Eq", "Neq",
@@ -43,6 +45,7 @@ namespace a3compiler {
     static string key_words_str[TOKEN_TYPES] = {
         "", "",
         "if", "else", "do", "while", "break", "continue", "return",
+        "const", "int", "void", 
         "", "", "", "", "", "", "",
         "", "", "", "", "", "", "", 
         "", "", "", "", "", "", "", "", "",
