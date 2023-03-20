@@ -9,6 +9,8 @@ set(CMAKE_CXX_STANDARD 17)
 include_directories("${PROJECT_SOURCE_DIR}")
 include_directories("include")
 
+add_subdirectory("scanner")
+
 add_executable(A3Compiler main.cpp)
 
 # Options for debugging only
@@ -16,4 +18,4 @@ add_executable(A3Compiler main.cpp)
 # SET(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -Wall -g2 -ggdb")
 # SET(CMAKE_CXX_FLAGS_RELEASE "$ENV{CXXFLAGS} -O3 -Wall")
 
-target_link_libraries(A3Compiler)
+target_link_libraries(A3Compiler Scanner)
