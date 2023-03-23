@@ -16,13 +16,59 @@ namespace a3compiler {
 
     enum node_type {
         IF_STMT = 0, 
+
     };
 
-    struct ASTNode {
-        vector<struct ASTNode*> child;
+    /* basis of all AST type */
+    struct BaseAST;
+
+    /* entry point for a file */
+    struct CompUnitAST;
+
+    /* variable declaration */
+    struct DeclAST;
+    struct ConstDeclAST;
+    struct BTypeAST;
+    struct ConstDefAST;
+    struct ConstInitValAST;
+    struct VarDeclAST;
+    struct VarDefAST;
+    struct InitValAST;
+
+    /* function definition */
+    struct FuncDefAST;
+    struct FuncTypeAST;
+    struct FuncFParamsAST;
+    struct FuncFParamAST;
+
+    /* block and statements */
+    struct BlockAST;
+    struct BlockItemAST;
+    struct StmtAST;
+    struct AssignStmtAST;
+    struct IfStmtAST;
+    struct WhileStmtAST;
+    struct BreakStmtAST;
+
+    /* expression */
+    struct ExprAST;
+    struct CondExprAST;
+    struct LValExprAST;
+
+    typedef struct BaseAST BaseAST;
+    typedef struct CompUnitAST CompUnitAST;
+    typedef struct DeclAST DeclAST;
+
+    struct BaseAST {
+        enum node_type type;
     };
 
-    typedef struct ASTNode ASTNode;
+    
+
+    struct CompUnitAST : BaseAST {
+
+    };
+
 };
 
 #endif
