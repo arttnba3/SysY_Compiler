@@ -48,6 +48,25 @@ static inline TokenType identifier_type(const string &lexeme)
 Token* A3Scanner::get_token(void)
 {
     Token *token;
+
+    if (this->token_queue.empty()) {
+        token = this->get_new_token();
+    } else {
+        token = this->token_queue.front();
+        this->token_queue.pop();
+    }
+
+    return token;
+}
+
+void A3Scanner::put_token(Token *token)
+{
+    this->token_queue.push(token);
+}
+
+Token* A3Scanner::get_new_token(void)
+{
+    Token *token;
     char ch;
 
     token = new Token;

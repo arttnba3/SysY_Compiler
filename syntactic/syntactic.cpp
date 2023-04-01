@@ -8,3 +8,7 @@ A3SyntacticParser::A3SyntacticParser(A3Scanner *scanner)
     this->scanner = scanner;
 }
 
+struct BaseAST* parse_stmt(void)
+{
+    
+}
